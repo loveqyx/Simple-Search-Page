@@ -1,48 +1,43 @@
 <template>
   <div id="menu" :class="{on:is_on}" @click="menu_client()"><i></i></div>
-  <div :class="{closed:!is_on}" class="list">
-    <ul id="setting">
-      <li :class="{selected:menu_selected==='bookmark'}" @click="menu_select('bookmark')"><a>书签</a></li>
-      <li :class="{selected:menu_selected==='setting'}" @click="menu_select('setting')"><a>设置</a></li>
-    </ul>
-    <ul id="element">
-      <span v-if="menu_selected==='bookmark'">
-        <Bookmarks></Bookmarks>
-      </span>
-      <span v-else-if="menu_selected==='setting'">
-        <Setting></Setting>
-      </span>
-    </ul>
-  </div>
   <div id="content" ref="content" @click="menu_close()">
-    <div id="top-menu-list">
-      <ul id="top-menu-ul">
-        <li :class="{selected:this.$route.path==='/'}">
-          <router-link to="/">首页</router-link>
-        </li>
-        <li :class="{selected:this.$route.path==='/nav'}">
-          <router-link to="/nav">导航</router-link>
-        </li>
-        <li :class="{selected:this.$route.path==='/software'}">
-          <router-link to="/software">软件</router-link>
-        </li>
-        <li :class="{selected:this.$route.path==='/os'}">
-          <router-link to="/os">系统</router-link>
-        </li>
-
-      </ul>
-    </div>
     <router-view></router-view>
     <!--    <Background @background="set_background"></Background>-->
     <div id="message"></div>
-    <div id="foot">©2018-2022
-      <a class="out_link" href="https://zhangdi.net/" target="_blank">ZHANGDI.</a> All rights reserved.
-      <a class="out_link beian" href="http://beian.miit.gov.cn/" target="_blank">蜀ICP备18024871号</a>
-<!--      <a href="https://github.com/zzd/Simple-Search-Page" style="font-size: 12px;" target="_blank">-->
-<!--        <span class="tag_box">v{{ version }} Vue 测试版</span></a>-->
-      <a href="https://github.com/zzd/Simple-Search-Page" style="font-size: 12px;" target="_blank">
-        <span class="tag_box">Vue 测试版</span></a>
-    </div>
+   <div style="position: fixed;bottom: 0px;width: 100%;">
+			<HR SIZE=1>
+        <center>
+				©2021-2023 
+		               <a href="https://hhyblog.top" target="_blank" class="embed">
+		               <img src="img/search.png" style="height: 13px;">我的博客 
+		               </a>
+		               All rights reserved
+				<br>
+				<font size="2">共</font>
+        <span id="busuanzi_value_page_pv" size="2"><i class="fa fa-spinner fa-spin"></i></span>
+				<font size="2">次访问&nbsp</font>
+				<font id="box1" size="2"></font>
+        </center>
+				<script>
+						 function timingTime(){
+						 let start = '2021-5-20 00:00:00'
+						 let startTime = new Date(start).getTime()
+                                                 let currentTime = new Date().getTime()
+                                                 let difference = currentTime - startTime
+                                                 let m =  Math.floor(difference / (1000))
+                                                 let mm = m % 60  // 秒
+                                                 let f = Math.floor(m / 60)
+                                                 let ff = f % 60 // 分钟
+                                                 let s = Math.floor(f/ 60) // 小时
+                                                 let ss = s % 24
+                                                 let day = Math.floor(s  / 24 ) // 天数
+                                                 return "已安全运行"+day + "天" + ss + "时" + ff + "分" + mm +'秒'
+                                               }
+                                               setInterval(()=>{
+                                                 document.getElementById('box1').innerHTML = timingTime()
+                                               },1000)
+                                 </script>
+			</div>
   </div>
 </template>
 <script>
